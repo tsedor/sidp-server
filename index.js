@@ -4,12 +4,12 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 
-//tmp
-const scheduleMonth = require('./tmpJson');
+const scheduleRouter = require('./routes/schedule');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use('/schedule', scheduleRouter);
 
 const secretPhrase = 'Konstantynopol';
 
@@ -82,10 +82,10 @@ const generateDaysTable = ( year = new Date().getFullYear(), month = new Date().
     calendar.push({day: x++, current: false, sunday: sunday % 7 === 0 ? true : false})
   }
   return calendar
-}
+}/*
 console.log(scheduleMonth)
 app.get('/schedule/month', (req, res) => {
   res.json(scheduleMonth)
-})
+})*/
 
 app.listen(3050);
